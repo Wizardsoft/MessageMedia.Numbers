@@ -13,7 +13,7 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright Wizardsoft 2020</copyright>
     <dependencies>
-        <group targetFramework="netstandard2.0">
+        <group targetFramework=".NETStandard2.0">
           <dependency id="RestSharp" version="106.10.3.0" />
           <dependency id="Newtonsoft.Json" version="12.0.3.0" />
         </group>
