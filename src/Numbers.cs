@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq.Expressions;
 using System.Net;
 using System.Text;
 using MessageMedia.Numbers.Models;
@@ -72,8 +73,9 @@ namespace MessageMedia.Numbers
         /// Assign the specified number to the authenticated account.
         /// </summary>
         /// <param name="numberId"></param>
+        /// <param name="label"></param>
         /// <returns></returns>
-        public bool CreateAssignment(Guid numberId)
+        public bool CreateAssignment(Guid numberId, string label)
         {
             var url = $"messaging/numbers/dedicated/{numberId}/assignment";
 
@@ -82,6 +84,10 @@ namespace MessageMedia.Numbers
             var request = new RestRequest(url);
 
             request.AddHeader("user-agent", "MessageMedia-Numbers-SDK");
+
+            request.RequestFormat = DataFormat.Json;
+             
+            request.AddBody("{  \"label\": \"" + label + "\"}");
 
             string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes(Configuration.Username + ":" + Configuration.Password));
             request.AddHeader("Authorization", "Basic " + credentials);
